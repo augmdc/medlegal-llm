@@ -1,5 +1,8 @@
 streamlit==1.32.0
-PyPDF2==3.0.1
+pypdf==4.0.2
 langchain==0.1.12
-langchain-community==0.0.28
+langchain-community>=0.0.28
 requests==2.32.3
+chromadb==0.4.24
+sentence-transformers==2.5.1
+psutil==5.9.8
