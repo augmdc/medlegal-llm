@@ -6,3 +6,5 @@ requests==2.32.3
 chromadb==0.4.24
 sentence-transformers==2.5.1
 psutil==5.9.8
+llama-index==0.10.68
+rank-bm25==0.2.2  # Required for BM25Retriever

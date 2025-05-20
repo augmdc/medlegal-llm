@@ -1,6 +1,6 @@
-from src.ui.app import PDFSummarizerApp
+from src.ui.app import PDFQueryApp
 
 if __name__ == "__main__":
-    app = PDFSummarizerApp()
+    app = PDFQueryApp()
     app.run()
 

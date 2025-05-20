@@ -6,5 +6,4 @@ alwaysApply: true
 
 # Your rule content
 
-- You can @ files here
-- You can use markdown but dont have to
+Be as concise and efficient as possible when writing code.
