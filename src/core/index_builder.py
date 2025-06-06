@@ -24,25 +24,23 @@ class IndexBuilder:
 
         try:
             if os.path.exists(os.path.join(index_persist_path, "docstore.json")):
-                # Attempt to load existing index
                 index = load_index_from_storage(storage_context)
                 print(f"Loaded existing {index_class.__name__} '{index_name}' from {index_persist_path}")
-                if documents: # If new documents are provided, add to existing index
-                    print(f"Adding {len(documents)} new documents to existing index '{index_name}'")
-                    for doc in documents:
-                        index.insert_document(doc) # Assumes nodes are created by the index
+                if documents: 
+                    print(f"Refreshing {len(documents)} documents in existing index '{index_name}'")
+                    # Use refresh_ref_docs for potentially more efficient updates
+                    index.refresh_ref_docs(documents)
                     index.storage_context.persist(persist_dir=index_persist_path)
                     print(f"Persisted updated index '{index_name}' to {index_persist_path}")
                 return index
             elif documents:
-                # Create new index if it doesn't exist and documents are provided
                 print(f"Building new {index_class.__name__} '{index_name}' with {len(documents)} documents.")
                 index = index_class.from_documents(documents, storage_context=storage_context)
-                index.storage_context.persist(persist_dir=index_persist_path) # Persist after creation
+                index.storage_context.persist(persist_dir=index_persist_path)
                 print(f"Persisted new index '{index_name}' to {index_persist_path}")
                 return index
             else:
-                # No documents to build new, and no existing index found
+                print(f"No documents to build new {index_class.__name__} '{index_name}', and no existing index found.")
                 return None
         except Exception as e:
             print(f"Error building/loading {index_class.__name__} '{index_name}': {e}. Consider clearing storage.")
@@ -66,6 +64,6 @@ class IndexBuilder:
         if os.path.exists(self.persist_root_dir):
             shutil.rmtree(self.persist_root_dir)
             print(f"Cleared all LlamaIndex storage at {self.persist_root_dir}")
-            os.makedirs(self.persist_root_dir, exist_ok=True) # Recreate root after clearing
+            os.makedirs(self.persist_root_dir, exist_ok=True)
         else:
             print(f"No LlamaIndex storage found at {self.persist_root_dir}") 

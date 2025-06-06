@@ -1,10 +1,10 @@
 streamlit==1.32.0
-pypdf==4.0.2
-langchain==0.1.12
-langchain-community>=0.0.28
-requests==2.32.3
-chromadb==0.4.24
-sentence-transformers==2.5.1
+pypdf>=5.1.0,<6.0.0
+llama-index==0.12.37
+llama-index-core==0.12.37
+llama-index-embeddings-huggingface
+llama-index-llms-openai
+llama-index-readers-file
+sentence-transformers>=2.6.1
 psutil==5.9.8
-llama-index==0.10.68
 rank-bm25==0.2.2  # Required for BM25Retriever
