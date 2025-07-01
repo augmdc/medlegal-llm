@@ -25,7 +25,7 @@ import chromadb
 from pathlib import Path
 
 # configure models
-Settings.llm = Ollama(model="llama2")
+Settings.llm = Ollama(model="llama2", request_timeout=60.0, context_window=8000)
 Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
 
 pdf_path = Path("/Users/augmdc/Downloads/Recents/A review of machine learning approaches for electric vehicle energy consumption modelling in urban transportation.pdf")
@@ -63,9 +63,5 @@ response = query_engine.query("Give me a summary of the document")
 print(response)
 
 # Retrieving
-
-
-# Evaluation – use the LlamaIndex evaluation module to create ground-truth Q-A pairs and compute retrieval+answer quality.
-
 
 # Output

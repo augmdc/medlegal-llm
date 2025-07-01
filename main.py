@@ -1,6 +1,5 @@
-from src.ui.app import PDFQueryApp
+from src.ui.app import run
 
 if __name__ == "__main__":
-    app = PDFQueryApp()
-    app.run()
+    run()
 
